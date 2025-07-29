@@ -32,9 +32,23 @@ function cleanCart() {
 buy(1);
 buy(2);
 buy(1);
-console.log("Antes de limpar:", cart);
+console.log("Before cleaning:", cart);
 
 cleanCart();
 
-console.log("Depois de limpar:", cart);
+console.log("After cleaning:", cart);
 
+// exercicio 3
+function calculaterTotal(){
+  let total = 0
+  for (let i = 0; i <cart.lenght; i++ ) {
+    if (cart.options[i]){
+      total += cart[i].price * cart[i].quantity;
+    }
+    return total;
+  }
+}
+
+//testando
+buy(1);
+buy(2);
