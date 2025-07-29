@@ -24,7 +24,17 @@ function buy(productId) {
   console.log(cart);
 }
 
+// exercicio 2 esvazia carrinho
+function cleanCart() {
+  cart.length = 0;
+}
+
 buy(1);
 buy(2);
 buy(1);
-console.log(cart);
+console.log("Antes de limpar:", cart);
+
+cleanCart();
+
+console.log("Depois de limpar:", cart);
+
