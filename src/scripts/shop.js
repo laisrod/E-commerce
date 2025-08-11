@@ -24,11 +24,12 @@ function buy(productId) {
   console.log(cart);
 }
 
-// exercicio 2 esvazia carrinho
+// exercicio 2 
 function cleanCart() {
   cart.length = 0;
 }
 
+//teste 1
 buy(1);
 buy(2);
 buy(1);
@@ -42,28 +43,32 @@ console.log("After cleaning:", cart);
 function calculateTotal() {
   let total = 0;
   for (let i = 0; i < cart.length; i++) {
-    total += cart[i].price * cart[i].quantity;
+    const item = cart[i];
+    if (item.subtotalWithDiscount > 0) {
+      total += item.subtotalWithDiscount;
+    } else {
+      total += item.price * item.quantity;
+    }
   }
   return total;
 }
 
-//testando
+//teste 2
 buy(1);
-buy(2); 
+buy(2);
+console.log("Before applying promotions:", cart);
 
 // exercicio 4
 function applyPromotionsCart(cart) {
   for (let i = 0; i < cart.length; i++) {
     const item = cart[i];
     
-    // Promoção 3 ou mais garrafas de óleo
     if (item.id === 1 && item.quantity >= 3) {
       const subtotal = item.price * item.quantity;
       const discount = subtotal * 0.20;
       item.subtotalWithDiscount = subtotal - discount;
     }
     
-    // Promoção 10 ou mais produtos para fazer bolos
     else if (item.id === 3 && item.quantity >= 10) {
       const subtotal = item.price * item.quantity;
       const discount = subtotal * 0.30;
@@ -75,5 +80,67 @@ function applyPromotionsCart(cart) {
     }
   }
 }
-
 console.log(cart)
+
+// exercicio 5
+function printCart() {
+  const modal = document.getElementById('cartModal');
+  const tableBody = document.getElementById('cartTableBody');
+  const totalSpan = document.getElementById('cartTotal');
+  
+  tableBody.innerHTML = '';
+  
+  if (cart.length === 0) {
+    const emptyRow = document.createElement('tr');
+    emptyRow.innerHTML = '<td colspan="4" style="text-align: center;">Your cart is empty</td>';
+    tableBody.appendChild(emptyRow);
+    totalSpan.textContent = '0';
+    return;
+  }
+  
+  applyPromotionsCart(cart);
+  
+  cart.forEach(item => {
+    const row = document.createElement('tr');
+    
+    const itemTotal = item.subtotalWithDiscount > 0 ? 
+                     item.subtotalWithDiscount : 
+                     item.price * item.quantity;
+    
+    row.innerHTML = `
+      <td>${item.name}</td>
+      <td>$${item.price.toFixed(2)}</td>
+      <td>${item.quantity}</td>
+      <td>$${itemTotal.toFixed(2)}</td>
+    `;
+    
+    tableBody.appendChild(row);
+  });
+  
+  const total = calculateTotal();
+  totalSpan.textContent = total.toFixed(2);
+}
+
+function openCart() {
+  const modal = document.getElementById('cartModal');
+  printCart();
+  modal.style.display = 'block';
+}
+
+function closeCart() {
+  const modal = document.getElementById('cartModal');
+  modal.style.display = 'none';
+}
+
+function checkout() {
+  alert('Checkout functionality will be implemented in the future!');
+  closeCart();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const cartBtn = document.querySelector('.cart-btn');
+  if (cartBtn) {
+    cartBtn.addEventListener('click', openCart);
+  }
+});
+  
