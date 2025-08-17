@@ -1,86 +1,55 @@
 function showError(fieldId, message) {
-    const field = document.getElementById(fieldId);
-    const error = document.getElementById(fieldId + 'Error');
-    
-    field.style.borderColor = 'red';
-    error.textContent = message;
-    error.style.display = 'block';
+    document.getElementById(fieldId).style.borderColor = 'red';
+    document.getElementById(fieldId + 'Error').textContent = message;
+    document.getElementById(fieldId + 'Error').style.display = 'block';
 }
 
 function clearError(fieldId) {
-    const field = document.getElementById(fieldId);
-    const error = document.getElementById(fieldId + 'Error');
-    
-    field.style.borderColor = '#ddd';
-    error.style.display = 'none';
-}
-
-function validateEmail(email) {
-    return email.includes('@') && email.includes('.');
+    document.getElementById(fieldId).style.borderColor = '#ddd';
+    document.getElementById(fieldId + 'Error').style.display = 'none';
 }
 
 function validateForm(event) {
     event.preventDefault();
     
+    document.querySelectorAll('.checkout-error').forEach(e => e.style.display = 'none');
+    document.querySelectorAll('input').forEach(i => i.style.borderColor = '#ddd');
+    
     let isValid = true;
     
-    const errors = document.querySelectorAll('.error');
-    errors.forEach(error => error.style.display = 'none');
+    const fields = [
+        { id: 'firstName', name: 'Nome', validator: (v) => /^[A-Za-zÀ-ÿ\s]+$/.test(v) },
+        { id: 'lastName', name: 'Sobrenome', validator: (v) => /^[A-Za-zÀ-ÿ\s]+$/.test(v) },
+        { id: 'email', name: 'Email', validator: (v) => v.includes('@') && v.includes('.') },
+        { id: 'password', name: 'Senha', validator: (v) => /[A-Za-z]/.test(v) && /\d/.test(v) },
+        { id: 'address', name: 'Endereço', validator: () => true },
+        { id: 'phone', name: 'Telefone', validator: (v) => /^\d+$/.test(v) }
+    ];
     
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => input.style.borderColor = '#ddd');
-    
-    const firstName = document.getElementById('firstName').value.trim();
-    if (!firstName) {
-        showError('firstName', 'Nome é obrigatório');
-        isValid = false;
-    }
-    
-    const lastName = document.getElementById('lastName').value.trim();
-    if (!lastName) {
-        showError('lastName', 'Sobrenome é obrigatório');
-        isValid = false;
-    }
-    
-    const email = document.getElementById('email').value.trim();
-    if (!email) {
-        showError('email', 'Email é obrigatório');
-        isValid = false;
-    } else if (!validateEmail(email)) {
-        showError('email', 'Email inválido');
-        isValid = false;
-    }
-    
-    const password = document.getElementById('password').value.trim();
-    if (!password) {
-        showError('password', 'Senha é obrigatória');
-        isValid = false;
-    }
-    
-    const address = document.getElementById('address').value.trim();
-    if (!address) {
-        showError('address', 'Endereço é obrigatório');
-        isValid = false;
-    }
-    
-    const phone = document.getElementById('phone').value.trim();
-    if (!phone) {
-        showError('phone', 'Telefone é obrigatório');
-        isValid = false;
-    }
+    fields.forEach(field => {
+        const value = document.getElementById(field.id).value.trim();
+        
+        if (!value) {
+            showError(field.id, `${field.name} é obrigatório`);
+            isValid = false;
+        } else if (value.length < 3) {
+            showError(field.id, `${field.name} deve ter pelo menos 3 caracteres`);
+            isValid = false;
+        } else if (!field.validator(value)) {
+            const messages = {
+                'firstName': 'Nome deve conter apenas letras',
+                'lastName': 'Sobrenome deve conter apenas letras',
+                'email': 'Formato de email inválido',
+                'password': 'Senha deve conter letras e números',
+                'phone': 'Telefone deve conter apenas números'
+            };
+            showError(field.id, messages[field.id] || 'Formato inválido');
+            isValid = false;
+        }
+    });
     
     if (isValid) {
-        alert('Formulário válido! Pedido processado com sucesso!');
-          
-        console.log('Dados do formulário:', {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            address: address,
-            phone: phone
-        });
-        
+        alert('✅ Formulário válido! Pedido processado com sucesso!');
         document.getElementById('checkoutForm').reset();
     }
     
@@ -88,18 +57,19 @@ function validateForm(event) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const fields = ['firstName', 'lastName', 'email', 'password', 'address', 'phone'];
+    const inputs = document.querySelectorAll('input');
     
-    fields.forEach(fieldId => {
-        const field = document.getElementById(fieldId);
-        field.addEventListener('input', function() {
-            clearError(fieldId);
+    inputs.forEach(input => {
+        // Ao digitar
+        input.addEventListener('input', function() {
+            if (this.value.trim()) {
+                clearError(this.id);
+            }
         });
         
-        field.addEventListener('blur', function() {
-            const value = this.value.trim();
-            if (!value) {
-                showError(fieldId, 'Campo obrigatório');
+        input.addEventListener('blur', function() {
+            if (!this.value.trim()) {
+                showError(this.id, 'Campo obrigatório');
             }
         });
     });
