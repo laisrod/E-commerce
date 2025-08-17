@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout Page - ShopNow</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="checkout-page">
+    <div class="checkout-header">
+        <div class="checkout-logo">ShopNow</div>
+        <div class="checkout-cart-icon">
+            <span>Cart (0)</span>
+            <div class="checkout-menu-icon">☰</div>
+        </div>
+    </div>
+    
+    <div class="checkout-main-content">
+        <h1 class="checkout-title">Checkout Page</h1>
+        
+        <div class="checkout-features">
+            <div class="checkout-feature-box">
+                <div class="checkout-feature-icon">💰</div>
+                <div>Cash on Delivery</div>
+            </div>
+            <div class="checkout-feature-box">
+                <div class="checkout-feature-icon">↔️</div>
+                <div>100% Return</div>
+            </div>
+            <div class="checkout-feature-box">
+                <div class="checkout-feature-icon">👍</div>
+                <div>Quality Assured</div>
+            </div>
+            <div class="checkout-feature-box">
+                <div class="checkout-feature-icon">⏰</div>
+                <div>Delivery on time</div>
+            </div>
+        </div>
+        
+        <form class="checkout-form" id="checkoutForm" onsubmit="validateForm(event)">
+            <div class="checkout-form-row">
+                <div class="checkout-form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                    <div class="checkout-error" id="firstNameError">Nome é obrigatório</div>
+                </div>
+                <div class="checkout-form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                    <div class="checkout-error" id="lastNameError">Sobrenome é obrigatório</div>
+                </div>
+            </div>
+            
+            <div class="checkout-form-row">
+                <div class="checkout-form-group">
+                    <input type="email" id="email" placeholder="Email" required>
+                    <div class="checkout-error" id="emailError">Email válido é obrigatório</div>
+                </div>
+                <div class="checkout-form-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <div class="checkout-error" id="passwordError">Senha é obrigatória</div>
+                </div>
+            </div>
+            
+            <div class="checkout-form-row">
+                <div class="checkout-form-group">
+                    <input type="text" id="address" placeholder="Address" required>
+                    <div class="checkout-error" id="addressError">Endereço é obrigatório</div>
+                </div>
+                <div class="checkout-form-group">
+                    <input type="tel" id="phone" placeholder="Phone No." required>
+                    <div class="checkout-error" id="phoneError">Telefone é obrigatório</div>
+                </div>
+            </div>
+            
+            <button type="submit" class="checkout-save-btn">
+                🛒 Save
+            </button>
+        </form>
+    </div>
+    
+    <div class="checkout-footer">
+        Copyright © Your Website 2022
+    </div>
+
+    <script src="scripts/checkout.js"></script>
+</body>
+</html> 

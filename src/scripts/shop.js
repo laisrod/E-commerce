@@ -133,8 +133,8 @@ function closeCart() {
 }
 
 function checkout() {
-  alert('Checkout functionality will be implemented in the future!');
-  closeCart();
+  // Redirecionar para a página de checkout
+  window.location.href = 'checkout.html';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
