@@ -24,6 +24,21 @@ function buy(productId) {
   console.log(cart);
 }
 
+// exercicio 7 - remover 1 unidade do produto (ou remover item se ficar 0)
+function removeFromCart(productId) {
+  const index = cart.findIndex(item => item.id === productId);
+  if (index === -1) return;
+
+  if (cart[index].quantity > 1) {
+    cart[index].quantity -= 1;
+  } else {
+    cart.splice(index, 1);
+  }
+
+  // Recalcular promoções e atualizar a UI do carrinho
+  printCart();
+}
+
 // exercicio 2 
 function cleanCart() {
   cart.length = 0;
@@ -110,7 +125,11 @@ function printCart() {
     row.innerHTML = `
       <td>${item.name}</td>
       <td>$${item.price.toFixed(2)}</td>
-      <td>${item.quantity}</td>
+      <td>
+        <button class="btn" onclick="removeFromCart(${item.id})">-</button>
+        <span style="margin: 0 8px;">${item.quantity}</span>
+        <button class="btn" onclick="buy(${item.id}); printCart()">+</button>
+      </td>
       <td>$${itemTotal.toFixed(2)}</td>
     `;
     
@@ -133,7 +152,6 @@ function closeCart() {
 }
 
 function checkout() {
-  // Redirecionar para a página de checkout
   window.location.href = 'checkout.html';
 }
 

@@ -373,3 +373,15 @@ main#content {
     margin-top: 5px;
     display: none;
 }
+
+.error {
+    border-color: red !important;
+}
+
+.checkout-error.active {
+    display: block;
+}
+
+.checkout-error {
+    display: none;
+}

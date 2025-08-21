@@ -1,55 +1,51 @@
 function showError(fieldId, message) {
-    document.getElementById(fieldId).style.borderColor = 'red';
+    document.getElementById(fieldId).classList.add('error');
     document.getElementById(fieldId + 'Error').textContent = message;
-    document.getElementById(fieldId + 'Error').style.display = 'block';
+    document.getElementById(fieldId + 'Error').classList.add('active');
 }
 
 function clearError(fieldId) {
-    document.getElementById(fieldId).style.borderColor = '#ddd';
-    document.getElementById(fieldId + 'Error').style.display = 'none';
+    document.getElementById(fieldId).classList.remove('error');
+    document.getElementById(fieldId + 'Error').classList.remove('active');
+}
+
+function clearAllErrors() {
+    document.querySelectorAll('input').forEach(input => input.classList.remove('error'));
+    document.querySelectorAll('.checkout-error').forEach(error => error.classList.remove('active'));
 }
 
 function validateForm(event) {
     event.preventDefault();
     
-    document.querySelectorAll('.checkout-error').forEach(e => e.style.display = 'none');
-    document.querySelectorAll('input').forEach(i => i.style.borderColor = '#ddd');
-    
+    clearAllErrors();
     let isValid = true;
     
     const fields = [
-        { id: 'firstName', name: 'Nome', validator: (v) => /^[A-Za-zÀ-ÿ\s]+$/.test(v) },
-        { id: 'lastName', name: 'Sobrenome', validator: (v) => /^[A-Za-zÀ-ÿ\s]+$/.test(v) },
-        { id: 'email', name: 'Email', validator: (v) => v.includes('@') && v.includes('.') },
-        { id: 'password', name: 'Senha', validator: (v) => /[A-Za-z]/.test(v) && /\d/.test(v) },
-        { id: 'address', name: 'Endereço', validator: () => true },
-        { id: 'phone', name: 'Telefone', validator: (v) => /^\d+$/.test(v) }
+        { id: 'firstName', name: 'First Name', validator: (v) => /^[A-Za-zÀ-ÿ\s]+$/, errorMsg: 'First name must contain only letters' },
+        { id: 'lastName', name: 'Last Name', validator: (v) => /^[A-Za-zÀ-ÿ\s]+$/, errorMsg: 'Last name must contain only letters' },
+        { id: 'email', name: 'Email', validator: (v) => v.includes('@') && v.includes('.'), errorMsg: 'Invalid email format' },
+        { id: 'password', name: 'Password', validator: (v) => /[A-Za-z]/.test(v) && /\d/.test(v), errorMsg: 'Password must contain letters and numbers' },
+        { id: 'address', name: 'Address', validator: () => true, errorMsg: '' },
+        { id: 'phone', name: 'Phone', validator: (v) => /^\d+$/.test(v), errorMsg: 'Phone must contain only numbers' }
     ];
     
     fields.forEach(field => {
         const value = document.getElementById(field.id).value.trim();
         
         if (!value) {
-            showError(field.id, `${field.name} é obrigatório`);
+            showError(field.id, `${field.name} it is mandatory`);
             isValid = false;
         } else if (value.length < 3) {
-            showError(field.id, `${field.name} deve ter pelo menos 3 caracteres`);
+            showError(field.id, `${field.name} must have at least 3 characters`);
             isValid = false;
         } else if (!field.validator(value)) {
-            const messages = {
-                'firstName': 'Nome deve conter apenas letras',
-                'lastName': 'Sobrenome deve conter apenas letras',
-                'email': 'Formato de email inválido',
-                'password': 'Senha deve conter letras e números',
-                'phone': 'Telefone deve conter apenas números'
-            };
-            showError(field.id, messages[field.id] || 'Formato inválido');
+            showError(field.id, field.errorMsg);
             isValid = false;
         }
     });
     
     if (isValid) {
-        alert('✅ Formulário válido! Pedido processado com sucesso!');
+        alert('Valid form! Request processed successfully!');
         document.getElementById('checkoutForm').reset();
     }
     
@@ -60,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputs = document.querySelectorAll('input');
     
     inputs.forEach(input => {
-        // Ao digitar
         input.addEventListener('input', function() {
             if (this.value.trim()) {
                 clearError(this.id);
@@ -69,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         input.addEventListener('blur', function() {
             if (!this.value.trim()) {
-                showError(this.id, 'Campo obrigatório');
+                showError(this.id, 'Field is mandatory');
             }
         });
     });
