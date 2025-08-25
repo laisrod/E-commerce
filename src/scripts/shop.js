@@ -24,7 +24,7 @@ function buy(productId) {
   console.log(cart);
 }
 
-// exercicio 7 - remover 1 unidade do produto (ou remover item se ficar 0)
+// exercicio 7
 function removeFromCart(productId) {
   const index = cart.findIndex(item => item.id === productId);
   if (index === -1) return;
@@ -35,7 +35,6 @@ function removeFromCart(productId) {
     cart.splice(index, 1);
   }
 
-  // Recalcular promoções e atualizar a UI do carrinho
   printCart();
 }
 
