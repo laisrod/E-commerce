@@ -1,41 +1,42 @@
-const products = [
-  { id: 1, name: "cooking oil", price: 10.5, type: "grocery" },
-  { id: 2, name: "Pasta", price: 6.25, type: "grocery" },
-  { id: 3, name: "Cake", price: 5, type: "grocery" },
-  { id: 4, name: "Shampoo", price: 8.99, type: "beauty" },
-  { id: 5, name: "Face cream", price: 12.50, type: "beauty" },
-  { id: 6, name: "Batom", price: 9.75, type: "beauty" },
-  { id: 7, name: "Headphones", price: 29.99, type: "electronics" },
-  { id: 8, name: "DVD", price: 99.99, type: "electronics" },
-  { id: 9, name: "TV", price: 49.99, type: "electronics" }
-];
-
+let products = [];
 const cart = [];
+
+export function initShop(initialProducts) {
+  products = initialProducts;
+  bindUIEvents();
+  updateCartBadge();
+}
+
+function bindUIEvents() {
+  document.addEventListener('click', (e) => {
+    const addBtn = e.target.closest('.add-to-cart');
+    const decBtn = e.target.closest('.dec-from-cart');
+    const incBtn = e.target.closest('.inc-to-cart');
+    const openCartBtn = e.target.closest('.cart-btn');
+
+    if (addBtn) { buy(Number(addBtn.dataset.productId)); }
+    if (decBtn) { removeFromCart(Number(decBtn.dataset.productId)); }
+    if (incBtn) { buy(Number(incBtn.dataset.productId)); }
+    if (openCartBtn) { openCart(); }
+  });
+}
 
 function buy(productId) {
   const product = products.find(p => p.id === productId);
   if (!product) return;
-  const cartItem = cart.find(item => item.id === productId);
-  if (cartItem) {
-    cartItem.quantity += 1;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
-  console.log(cart);
+  const item = cart.find(i => i.id === productId);
+  if (item) item.quantity += 1; else cart.push({ ...product, quantity: 1 });
+  if (window.DEBUG) console.log('[cart] add', { productId, cart: (typeof structuredClone !== 'undefined') ? structuredClone(cart) : JSON.parse(JSON.stringify(cart)) });
+  updateUI(); // em vez de printCart() isolado
 }
 
 // exercicio 7
 function removeFromCart(productId) {
-  const index = cart.findIndex(item => item.id === productId);
+  const index = cart.findIndex(i => i.id === productId);
   if (index === -1) return;
-
-  if (cart[index].quantity > 1) {
-    cart[index].quantity -= 1;
-  } else {
-    cart.splice(index, 1);
-  }
-
-  printCart();
+  if (cart[index].quantity > 1) cart[index].quantity -= 1; else cart.splice(index, 1);
+  if (window.DEBUG) console.log('[cart] remove', { productId, cart: (typeof structuredClone !== 'undefined') ? structuredClone(cart) : JSON.parse(JSON.stringify(cart)) });
+  updateUI(); // em vez de printCart() isolado
 }
 
 // exercicio 2 
@@ -43,34 +44,15 @@ function cleanCart() {
   cart.length = 0;
 }
 
-//teste 1
-buy(1);
-buy(2);
-buy(1);
-console.log("Before cleaning:", cart);
-
-cleanCart();
-
-console.log("After cleaning:", cart);
 
 // exercicio 3
 function calculateTotal() {
-  let total = 0;
-  for (let i = 0; i < cart.length; i++) {
-    const item = cart[i];
-    if (item.subtotalWithDiscount > 0) {
-      total += item.subtotalWithDiscount;
-    } else {
-      total += item.price * item.quantity;
-    }
-  }
-  return total;
+  return cart.reduce((sum, item) => {
+    const n = item.subtotalWithDiscount > 0 ? item.subtotalWithDiscount : item.price * item.quantity;
+    return sum + n;
+  }, 0);
 }
 
-//teste 2
-buy(1);
-buy(2);
-console.log("Before applying promotions:", cart);
 
 // exercicio 4
 function applyPromotionsCart(cart) {
@@ -94,7 +76,6 @@ function applyPromotionsCart(cart) {
     }
   }
 }
-console.log(cart)
 
 // exercicio 5
 function printCart() {
@@ -109,6 +90,7 @@ function printCart() {
     emptyRow.innerHTML = '<td colspan="4" style="text-align: center;">Your cart is empty</td>';
     tableBody.appendChild(emptyRow);
     totalSpan.textContent = '0';
+    if (window.DEBUG) console.log('[cart] printCart empty');
     return;
   }
   
@@ -125,9 +107,9 @@ function printCart() {
       <td>${item.name}</td>
       <td>$${item.price.toFixed(2)}</td>
       <td>
-        <button class="btn" onclick="removeFromCart(${item.id})">-</button>
+        <button class="btn dec-from-cart" data-product-id="${item.id}">-</button>
         <span style="margin: 0 8px;">${item.quantity}</span>
-        <button class="btn" onclick="buy(${item.id}); printCart()">+</button>
+        <button class="btn inc-to-cart" data-product-id="${item.id}">+</button>
       </td>
       <td>$${itemTotal.toFixed(2)}</td>
     `;
@@ -137,12 +119,14 @@ function printCart() {
   
   const total = calculateTotal();
   totalSpan.textContent = total.toFixed(2);
+  if (window.DEBUG) console.log('[cart] printCart done', { cart, total });
 }
 
 function openCart() {
   const modal = document.getElementById('cartModal');
   printCart();
   modal.style.display = 'block';
+  if (window.DEBUG) console.log('[cart] openCart');
 }
 
 function closeCart() {
@@ -154,10 +138,33 @@ function checkout() {
   window.location.href = 'checkout.html';
 }
 
+function getCartCount() {
+  return cart.reduce((sum, it) => sum + it.quantity, 0);
+}
+function updateCartBadge() {
+  const el = document.getElementById('cartCount');
+  if (el) el.textContent = String(getCartCount());
+  if (window.DEBUG) console.log('[cart] badge', getCartCount());
+}
+
+function updateUI() {
+  applyPromotionsCart(cart);
+  printCart();
+  if (typeof updateCartBadge === 'function') {
+    updateCartBadge();
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const cartBtn = document.querySelector('.cart-btn');
   if (cartBtn) {
     cartBtn.addEventListener('click', openCart);
   }
+  if (window.DEBUG) console.log('shop.js loaded');
 });
+  
+
+window.closeCart = closeCart;
+window.cleanCart = cleanCart;
+window.checkout = checkout;
   
