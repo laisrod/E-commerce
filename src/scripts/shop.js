@@ -3,8 +3,35 @@ const cart = [];
 
 export function initShop(initialProducts) {
   products = initialProducts;
+  renderAllProducts();
   bindUIEvents();
   updateCartBadge();
+}
+
+function renderAllProducts() {
+  renderProducts('groceryProducts', 'grocery');
+  renderProducts('beautyProducts', 'beauty');
+  renderProducts('electronicsProducts', 'electronics');
+}
+
+function renderProducts(containerId, productType) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  
+  const filteredProducts = products.filter(p => p.type === productType);
+  
+  container.innerHTML = filteredProducts.map(product => `
+    <div class="product-card">
+      <div class="product-icon">
+        <img src="img/product.svg" alt="Product" height="89" width="90">
+      </div>
+      <div class="product-name">${product.name}</div>
+      <div class="product-price">$${product.price.toFixed(2)}</div>
+      <div class="add-cart-btn">
+        <button class="btn add-to-cart" data-product-id="${product.id}">Add to cart</button>
+      </div>
+    </div>
+  `).join('');
 }
 
 function bindUIEvents() {
@@ -27,25 +54,21 @@ function buy(productId) {
   const item = cart.find(i => i.id === productId);
   if (item) item.quantity += 1; else cart.push({ ...product, quantity: 1 });
   if (window.DEBUG) console.log('[cart] add', { productId, cart: (typeof structuredClone !== 'undefined') ? structuredClone(cart) : JSON.parse(JSON.stringify(cart)) });
-  updateUI(); // em vez de printCart() isolado
+  updateUI();
 }
 
-// exercicio 7
 function removeFromCart(productId) {
   const index = cart.findIndex(i => i.id === productId);
   if (index === -1) return;
   if (cart[index].quantity > 1) cart[index].quantity -= 1; else cart.splice(index, 1);
   if (window.DEBUG) console.log('[cart] remove', { productId, cart: (typeof structuredClone !== 'undefined') ? structuredClone(cart) : JSON.parse(JSON.stringify(cart)) });
-  updateUI(); // em vez de printCart() isolado
+  updateUI();
 }
 
-// exercicio 2 
 function cleanCart() {
   cart.length = 0;
 }
 
-
-// exercicio 3
 function calculateTotal() {
   return cart.reduce((sum, item) => {
     const n = item.subtotalWithDiscount > 0 ? item.subtotalWithDiscount : item.price * item.quantity;
@@ -53,8 +76,6 @@ function calculateTotal() {
   }, 0);
 }
 
-
-// exercicio 4
 function applyPromotionsCart(cart) {
   for (let i = 0; i < cart.length; i++) {
     const item = cart[i];
@@ -77,7 +98,6 @@ function applyPromotionsCart(cart) {
   }
 }
 
-// exercicio 5
 function printCart() {
   const modal = document.getElementById('cartModal');
   const tableBody = document.getElementById('cartTableBody');
@@ -141,6 +161,7 @@ function checkout() {
 function getCartCount() {
   return cart.reduce((sum, it) => sum + it.quantity, 0);
 }
+
 function updateCartBadge() {
   const el = document.getElementById('cartCount');
   if (el) el.textContent = String(getCartCount());
@@ -162,7 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   if (window.DEBUG) console.log('shop.js loaded');
 });
-  
 
 window.closeCart = closeCart;
 window.cleanCart = cleanCart;

@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>ShopNow</title>
-
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 </head>
@@ -28,39 +27,8 @@
         <img src="img/shopping-basket.png">
         <h2>Grocery</h2>
       </div>
-      <div class="products-row">
-        <div class="product-card">
-          <div class="product-icon">
-            <img src="img/product.svg" alt="Product" height="89" width="90">
-          </div>
-          <div class="product-name">cooking oil</div>
-          <div class="product-price">$10.5</div>
-          <div class="add-cart-btn">
-            <button class="btn add-to-cart" data-product-id="1">Add to cart</button>
-          </div>
-        </div>
-        
-        <div class="product-card">
-          <div class="product-icon">
-            <img src="img/product.svg" alt="Product" height="89" width="90">
-          </div>
-          <div class="product-name">Pasta</div>
-          <div class="product-price">$6.25</div>
-          <div class="add-cart-btn">
-            <button class="btn add-to-cart" data-product-id="2">Add to cart</button>
-          </div>
-        </div>
-        
-        <div class="product-card">
-          <div class="product-icon">
-            <img src="img/product.svg" alt="Product" height="89" width="90">
-          </div>
-          <div class="product-name">Cake</div>
-          <div class="product-price">$5</div>
-          <div class="add-cart-btn">
-            <button class="btn add-to-cart" data-product-id="3">Add to cart</button>
-          </div>
-        </div>
+      <div class="products-row" id="groceryProducts">
+        <!-- Produtos gerados dinamicamente aqui -->
       </div>
     </article>
     
@@ -69,39 +37,8 @@
         <img src="img/silhueta-em-forma-de-coracao.png" alt="Beauty">
         <h2>Beauty</h2>
       </div>
-      <div class="products-row">
-        <div class="product-card">
-          <div class="product-icon">
-            <img src="img/product.svg" alt="Product" height="89" width="90">
-          </div>
-          <div class="product-name">Shampoo</div>
-          <div class="product-price">$8.99</div>
-          <div class="add-cart-btn">
-            <button class="btn add-to-cart" data-product-id="4">Add to cart</button>
-          </div>
-        </div>
-        
-        <div class="product-card">
-          <div class="product-icon">
-            <img src="img/product.svg" alt="Product" height="89" width="90">
-          </div>
-          <div class="product-name">Face cream</div>
-          <div class="product-price">$12.50</div>
-          <div class="add-cart-btn">
-            <button class="btn add-to-cart" data-product-id="5">Add to cart</button>
-          </div>
-        </div>
-        
-        <div class="product-card">
-          <div class="product-icon">
-            <img src="img/product.svg" alt="Product" height="89" width="90">
-          </div>
-          <div class="product-name">Batom</div>
-          <div class="product-price">$9.75</div>
-          <div class="add-cart-btn">
-            <button class="btn add-to-cart" data-product-id="6">Add to cart</button>
-          </div>
-        </div>
+      <div class="products-row" id="beautyProducts">
+        <!-- Produtos gerados dinamicamente aqui -->
       </div>
     </article>
     
@@ -110,44 +47,13 @@
         <img src="img/computer.png" alt="Electronics">
         <h2>Electronics</h2>
       </div>
-      <div class="products-row">
-        <div class="product-card">
-          <div class="product-icon">
-            <img src="img/product.svg" alt="Product">
-          </div>
-          <div class="product-name">Headphones</div>
-          <div class="product-price">$29.99</div>
-          <div class="add-cart-btn">
-            <button class="btn add-to-cart" data-product-id="7">Add to cart</button>
-          </div>
-        </div>
-        
-        <div class="product-card">
-          <div class="product-icon">
-            <img src="img/product.svg" alt="Product">
-          </div>
-          <div class="product-name">DVD</div>
-          <div class="product-price">$99.99</div>
-          <div class="add-cart-btn">
-            <button class="btn add-to-cart" data-product-id="8">Add to cart</button>
-          </div>
-        </div>
-        
-        <div class="product-card">
-          <div class="product-icon">
-            <img src="img/product.svg" alt="Product">
-          </div>
-          <div class="product-name">TV</div>
-          <div class="product-price">$49.99</div>
-          <div class="add-cart-btn">
-            <button class="btn add-to-cart" data-product-id="9">Add to cart</button>
-          </div>
-        </div>
+      <div class="products-row" id="electronicsProducts">
+        <!-- Produtos gerados dinamicamente aqui -->
       </div>
     </article>
   </main>
 
-  <!-- modal -->
+  <!-- Modal do carrinho (mantém igual) -->
   <div id="cartModal" class="modal" style="display: none;">
     <div class="modal-content">
       <div class="modal-header">
