@@ -68,4 +68,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    const form = document.getElementById('checkoutForm');
+    if (form) {
+        form.addEventListener('submit', validateForm);
+    }
 });
+
+window.validateForm = validateForm;
