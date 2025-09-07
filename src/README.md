@@ -1,4 +1,4 @@
-# ShopNow 🛒
+# ShopNow
 
 A simple online store developed during my JavaScript studies. The project focuses on implementing basic e-commerce features like shopping cart, promotions, and checkout.
 
@@ -84,4 +84,4 @@ During development I learned about:
 
 ---
 
-Developed as part of JavaScript course. Feedback and suggestions are welcome! 🚀 
+Developed as part of JavaScript course. Feedback and suggestions are welcome! 
