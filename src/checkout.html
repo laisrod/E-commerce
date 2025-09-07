@@ -19,30 +19,28 @@
         
         <div class="checkout-features">
             <div class="checkout-feature-box">
-                <div class="checkout-feature-icon">$</div>
-                <div>Cash on Delivery</div>
+                <div>$ Cash on Delivery</div>
             </div>
             <div class="checkout-feature-box">
-                <div class="checkout-feature-icon">↔</div>
-                <div>100% Return</div>
+                <div>↔ 100% Return</div>
             </div>
             <div class="checkout-feature-box">
-                <div class="checkout-feature-icon">👍</div>
-                <div>Quality Assured</div>
+                <div>👍 Quality Assured</div>
             </div>
             <div class="checkout-feature-box">
-                <div class="checkout-feature-icon">🕒</div>
-                <div>Delivery on time</div>
+                <div>🕒 Delivery on time</div>
             </div>
         </div>
         
         <form class="checkout-form" id="checkoutForm" onsubmit="validateForm(event)">
             <div class="checkout-form-row">
                 <div class="checkout-form-group">
+                    <label for="firstName">First Name:</label>
                     <input type="text" id="firstName" placeholder="First Name" required>
                     <div class="checkout-error" id="firstNameError">First Name is mandatory</div>
                 </div>
                 <div class="checkout-form-group">
+                    <label for="lastName">Last Name:</label>
                     <input type="text" id="lastName" placeholder="Last Name" required>
                     <div class="checkout-error" id="lastNameError">Last Name is mandatory</div>
                 </div>
@@ -50,10 +48,12 @@
             
             <div class="checkout-form-row">
                 <div class="checkout-form-group">
+                    <label for="email">Email:</label>
                     <input type="email" id="email" placeholder="Email" required>
                     <div class="checkout-error" id="emailError">Valid email is mandatory</div>
                 </div>
                 <div class="checkout-form-group">
+                    <label for="password">Password:</label>
                     <input type="password" id="password" placeholder="Password" required>
                     <div class="checkout-error" id="passwordError">Password is mandatory</div>
                 </div>
@@ -61,17 +61,19 @@
             
             <div class="checkout-form-row">
                 <div class="checkout-form-group">
+                    <label for="address">Address:</label>
                     <input type="text" id="address" placeholder="Address" required>
                     <div class="checkout-error" id="addressError">Address is mandatory</div>
                 </div>
                 <div class="checkout-form-group">
+                    <label for="phone">Phone:</label>
                     <input type="tel" id="phone" placeholder="Phone" required>
                     <div class="checkout-error" id="phoneError">Phone is mandatory</div>
                 </div>
             </div>
             
             <button type="submit" class="checkout-save-btn">
-                🛒  Checkout
+                🛒  Save
             </button>
         </form>
     </div>

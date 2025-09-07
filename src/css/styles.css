@@ -345,7 +345,7 @@ main#content {
 
 .checkout-features {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   margin-bottom: 40px;
 }
@@ -379,6 +379,11 @@ main#content {
 
 .checkout-form-group {
   margin-bottom: 20px;
+}
+.checkout-form-group label {
+  display: flex;
+  margin-bottom: 5px;
+  font-weight: 400;
 }
 
 .checkout-form-group input {
@@ -441,6 +446,6 @@ main#content {
 }
 
 @media (max-width: 480px) {
-  .checkout-form-row { grid-template-columns: 1fr; }
+  .checkout-features { grid-template-columns: 1fr; }
   .checkout-title { font-size: 24px; }
 }

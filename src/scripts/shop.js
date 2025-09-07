@@ -28,7 +28,7 @@ function renderProducts(containerId, productType) {
       <div class="product-name">${product.name}</div>
       <div class="product-price">$${product.price.toFixed(2)}</div>
       <div class="add-cart-btn">
-        <button class="btn btn-primary add-to-cart" data-product-id="${product.id}">Add to cart</button>
+        <button class="btn add-to-cart" data-product-id="${product.id}">Add to cart</button>
       </div>
     </div>
   `).join('');
