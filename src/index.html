@@ -5,90 +5,71 @@
   <title>ShopNow</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <header class="prymary-header">
-    <nav class="navbar">
-      <button class="back-btn">Return</button>
-      <span class="cart-btn">My Cart (<span id="cartCount">0</span>)</span>
-    </nav>
+    <div class="navbar">
+      <a class="back-btn" href="#">ShopNow</a>
+      <button class="cart-btn" type="button">My Cart (<span id="cartCount">0</span>)</button>
+    </div>
   </header>
-  
+
   <main id="content">
-    <section class="">
-      <div class="text hero-text">
-        <h1>Welcome to the ShopNow</h1>
-        <p>Get up to 50% off Today Only!</p>
-      </div>
-    </section>
-    
-    <article>
+    <section id="grocery" class="mb-5">
       <div class="text">
-        <img src="img/shopping-basket.png">
         <h2>Grocery</h2>
       </div>
-      <div class="products-row" id="groceryProducts">
-        <!-- Produtos gerados dinamicamente aqui -->
-      </div>
-    </article>
-    
-    <article>
+      <div class="products-row" id="groceryProducts"></div>
+    </section>
+
+    <section id="beauty" class="mb-5">
       <div class="text">
-        <img src="img/silhueta-em-forma-de-coracao.png" alt="Beauty">
         <h2>Beauty</h2>
       </div>
-      <div class="products-row" id="beautyProducts">
-        <!-- Produtos gerados dinamicamente aqui -->
-      </div>
-    </article>
-    
-    <article>
+      <div class="products-row" id="beautyProducts"></div>
+    </section>
+
+    <section id="electronics" class="mb-5">
       <div class="text">
-        <img src="img/computer.png" alt="Electronics">
         <h2>Electronics</h2>
       </div>
-      <div class="products-row" id="electronicsProducts">
-        <!-- Produtos gerados dinamicamente aqui -->
-      </div>
-    </article>
+      <div class="products-row" id="electronicsProducts"></div>
+    </section>
   </main>
 
-  <!-- Modal do carrinho (mantém igual) -->
-  <div id="cartModal" class="modal" style="display: none;">
+  <div class="modal" id="cartModal" tabindex="-1">
     <div class="modal-content">
       <div class="modal-header">
-        <h3>🛒 My Cart</h3>
+        <h3>My Cart</h3>
         <span class="close" onclick="closeCart()">&times;</span>
       </div>
-      
       <div class="modal-body">
-        <h2>Shopping Cart</h2>
-        
-        <table id="cartTable">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Qty.</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody id="cartTableBody">
-            <!-- produtos -->
-          </tbody>
-        </table>
-        
-        <div class="cart-total">
-          <strong>Total: $<span id="cartTotal">0</span></strong>
+        <div class="table-responsive">
+          <table id="cartTable">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Qty.</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="cartTableBody"></tbody>
+          </table>
         </div>
+        <div class="cart-total">Total: $<span id="cartTotal">0</span></div>
       </div>
-      
       <div class="modal-footer">
-        <button onclick="checkout()" class="btn btn-primary">Checkout</button>
-        <button onclick="cleanCart()" class="btn btn-secondary">Clean Cart</button>
+        <button type="button" class="btn btn-secondary" onclick="cleanCart()">Clean Cart</button>
+        <button type="button" class="btn btn-primary" onclick="checkout()">Checkout</button>
       </div>
     </div>
   </div>
+
+  <footer class="checkout-footer">
+    <div>© 2025 ShopNow. All rights reserved.</div>
+  </footer>
 
   <script>window.DEBUG = true;</script>
   <script type="module">

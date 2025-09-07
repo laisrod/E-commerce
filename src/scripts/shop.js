@@ -23,12 +23,12 @@ function renderProducts(containerId, productType) {
   container.innerHTML = filteredProducts.map(product => `
     <div class="product-card">
       <div class="product-icon">
-        <img src="img/product.svg" alt="Product" height="89" width="90">
+        <img src="img/product.svg" alt="Product">
       </div>
       <div class="product-name">${product.name}</div>
       <div class="product-price">$${product.price.toFixed(2)}</div>
       <div class="add-cart-btn">
-        <button class="btn add-to-cart" data-product-id="${product.id}">Add to cart</button>
+        <button class="btn btn-primary add-to-cart" data-product-id="${product.id}">Add to cart</button>
       </div>
     </div>
   `).join('');
@@ -67,6 +67,7 @@ function removeFromCart(productId) {
 
 function cleanCart() {
   cart.length = 0;
+  updateUI();
 }
 
 function calculateTotal() {
