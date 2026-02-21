@@ -36,25 +36,31 @@ function App() {
 
         <ProductSection
           title="Grocery"
+          subtitle="selection"
           icon="/img/grocery.png"
           iconAlt="Grocery"
           products={groceryProducts}
+          startIndex={1}
           onAddToCart={handleAddToCart}
         />
 
         <ProductSection
           title="Beauty"
+          subtitle="selection"
           icon="/img/silhueta-em-forma-de-coracao.png"
           iconAlt="Beauty"
           products={beautyProducts}
+          startIndex={4}
           onAddToCart={handleAddToCart}
         />
 
         <ProductSection
           title="Electronics"
+          subtitle="selection"
           icon="/img/herramientas-y-utensilios.png"
           iconAlt="Electronics"
           products={electronicsProducts}
+          startIndex={7}
           onAddToCart={handleAddToCart}
         />
       </main>
