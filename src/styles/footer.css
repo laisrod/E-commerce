@@ -1,0 +1,185 @@
+/* ========== FOOTER ========== */
+
+.site-footer {
+  background: #222;
+  color: #ccc;
+  margin-top: 0;
+}
+
+/* Newsletter */
+.footer-newsletter {
+  text-align: center;
+  padding: 60px 24px 50px;
+  border-bottom: 1px solid #333;
+}
+
+.footer-newsletter-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: #fff;
+  margin: 0 0 12px 0;
+}
+
+.footer-newsletter-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #999;
+  letter-spacing: 0.5px;
+  margin: 0 0 28px 0;
+}
+
+.footer-newsletter-form {
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  border-bottom: 1px solid #555;
+}
+
+.footer-newsletter-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  padding: 10px 0;
+  letter-spacing: 0.5px;
+}
+.footer-newsletter-input::placeholder {
+  color: #777;
+}
+
+.footer-newsletter-btn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+.footer-newsletter-btn:hover {
+  color: #fff;
+}
+
+/* Columns */
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 24px;
+}
+
+.footer-col-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #fff;
+  margin: 0 0 20px 0;
+}
+
+.footer-col-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-col-list li {
+  margin-bottom: 12px;
+}
+
+.footer-col-list li a {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #999;
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease;
+}
+.footer-col-list li a:hover {
+  color: #fff;
+}
+
+/* Social */
+.footer-social {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-social-link {
+  color: #999;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+.footer-social-link:hover {
+  color: #fff;
+}
+
+/* Bottom bar */
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-top: 1px solid #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #666;
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-bottom-links a {
+  text-decoration: none;
+  color: #666;
+  transition: color 0.2s ease;
+}
+.footer-bottom-links a:hover {
+  color: #fff;
+}
+
+/* ========== Responsivo Footer ========== */
+@media (max-width: 768px) {
+  .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 20px;
+    padding: 40px 20px;
+  }
+  .footer-newsletter {
+    padding: 40px 20px 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+  .footer-social {
+    justify-content: center;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}

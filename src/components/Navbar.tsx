@@ -10,9 +10,13 @@ export function Navbar({ cartCount, onCartClick }: NavbarProps) {
 
   return (
     <header className="site-header">
+      {/* Announcement bar */}
+      <div className="announcement-bar">
+        <p>FREE SHIPPING ON ORDERS OVER R$ 450</p>
+      </div>
+
       {/* Toolbar */}
       <div className="header-toolbar">
-        {/* Hamburger menu */}
         <button
           className="toolbar-btn hamburger-btn"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -25,9 +29,7 @@ export function Navbar({ cartCount, onCartClick }: NavbarProps) {
           </svg>
         </button>
 
-        {/* Right actions */}
         <div className="toolbar-actions">
-          {/* Grid icon */}
           <button className="toolbar-btn" aria-label="Grid view">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <rect x="3" y="3" width="7" height="7" />
@@ -37,12 +39,10 @@ export function Navbar({ cartCount, onCartClick }: NavbarProps) {
             </svg>
           </button>
 
-          {/* Filters */}
           <button className="toolbar-btn toolbar-text-btn" aria-label="Filters">
             FILTERS
           </button>
 
-          {/* Search */}
           <button className="toolbar-btn" aria-label="Buscar">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8" />
@@ -50,7 +50,6 @@ export function Navbar({ cartCount, onCartClick }: NavbarProps) {
             </svg>
           </button>
 
-          {/* Cart / Bag */}
           <button className="toolbar-btn cart-icon-btn" onClick={onCartClick} aria-label="Carrinho">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />

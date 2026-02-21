@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { products } from './data/products'
 import { useCart } from './hooks/useCart'
 import { Navbar } from './components/Navbar'
+import { Hero } from './components/Hero'
 import { ProductSection } from './components/ProductSection'
 import { CartModal } from './components/CartModal'
 import { Footer } from './components/Footer'
@@ -27,13 +28,9 @@ function App() {
         onCartClick={() => setIsCartOpen(true)}
       />
 
-      <main id="content">
-        <section>
-          <div className="text">
-            <h1>Welcome to ShopNow</h1>
-          </div>
-        </section>
+      <Hero />
 
+      <main id="content">
         <ProductSection
           title="Grocery"
           subtitle="selection"

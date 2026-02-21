@@ -7,7 +7,23 @@
   z-index: 100;
 }
 
-/* ========== Toolbar ========== */
+/* Announcement bar */
+.announcement-bar {
+  text-align: center;
+  padding: 8px 24px;
+  background: #f5f5f0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.announcement-bar p {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #555;
+}
+
+/* Toolbar */
 .header-toolbar {
   display: flex;
   align-items: center;
@@ -62,7 +78,7 @@
   justify-content: center;
 }
 
-/* ========== Navegação ========== */
+/* Navigation */
 .header-nav {
   border-bottom: 1px solid #e0e0e0;
 }
@@ -118,5 +134,9 @@
   }
   .toolbar-actions {
     gap: 12px;
+  }
+  .announcement-bar p {
+    font-size: 9px;
+    letter-spacing: 1px;
   }
 }

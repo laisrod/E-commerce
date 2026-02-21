@@ -101,7 +101,11 @@ export function DetailsCard({ product, onAddToCart }: DetailsCardProps) {
               className={`details-add-btn ${added ? 'added' : ''}`}
               onClick={handleAdd}
             >
-              {added ? '✓ Adicionado!' : '🛒 Adicionar ao carrinho'}
+              {added ? (
+                <><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Adicionado!</>
+              ) : (
+                <><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Adicionar ao carrinho</>
+              )}
             </button>
             <button className="details-buy-btn" onClick={() => {
               handleAdd()
@@ -116,21 +120,21 @@ export function DetailsCard({ product, onAddToCart }: DetailsCardProps) {
           {/* Benefícios */}
           <div className="details-benefits">
             <div className="details-benefit">
-              <span className="details-benefit-icon">🚚</span>
+              <span className="details-benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
               <div>
                 <strong>Frete Grátis</strong>
                 <span>acima de R$ 450,00</span>
               </div>
             </div>
             <div className="details-benefit">
-              <span className="details-benefit-icon">↩️</span>
+              <span className="details-benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></span>
               <div>
                 <strong>Troca Grátis</strong>
                 <span>em até 30 dias</span>
               </div>
             </div>
             <div className="details-benefit">
-              <span className="details-benefit-icon">🔒</span>
+              <span className="details-benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
               <div>
                 <strong>Compra Segura</strong>
                 <span>dados protegidos</span>

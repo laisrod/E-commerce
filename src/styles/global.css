@@ -21,7 +21,7 @@
 }
 
 body {
-  background: var(--color-bg);
+  background: #fff;
   margin: 0;
   font-family: 'Montserrat', Arial, sans-serif;
   text-align: center;
@@ -30,30 +30,8 @@ body {
 
 main#content {
   max-width: 1200px;
-  margin: 30px auto;
-  padding: 20px;
-  background: var(--color-surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-}
-
-/* ========== HERO TEXT ========== */
-
-.text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.text h1, .text h2 {
-  color: #333;
-  margin-bottom: 10px;
-  text-align: center;
-}
-.text h1 {
-  margin-bottom: 16px;
-  font-weight: 700;
+  margin: 0 auto;
+  padding: 60px 24px;
 }
 
 .btn {
@@ -323,11 +301,14 @@ main#content {
 }
 
 .checkout-footer {
-  background: #333;
-  color: white;
+  background: #222;
+  color: #ccc;
   text-align: center;
   padding: 20px;
   margin-top: 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
 }
 
 .checkout-error {
