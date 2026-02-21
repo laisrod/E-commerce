@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { products } from './data/products'
 import { useCart } from './hooks/useCart'
-import { Header } from './components/Header'
+import { Navbar } from './components/Navbar'
 import { ProductSection } from './components/ProductSection'
 import { CartModal } from './components/CartModal'
 import { Footer } from './components/Footer'
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <>
-      <Header
+      <Navbar
         cartCount={totalItems}
         onCartClick={() => setIsCartOpen(true)}
       />

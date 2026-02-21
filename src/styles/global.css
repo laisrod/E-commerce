@@ -1,17 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap');
 
 :root {
   --color-bg: #fafafa;
   --color-surface: #ffffff;
-  --color-text: #222;
-  --color-text-muted: #666;
-  --color-primary: #2568e3;
-  --color-primary-hover: #174aaf;
+  --color-text: #3e3028;
+  --color-text-muted: #7a6b5d;
+  --color-primary: #5a4032;
+  --color-primary-hover: #3e2b1f;
   --color-success: #28a745;
   --color-success-hover: #218838;
   --color-secondary: #6c757d;
   --color-secondary-hover: #5a6268;
-  --color-border: #eee;
+  --color-border: #e8e4e0;
   --radius-md: 8px;
   --radius-lg: 10px;
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
@@ -27,33 +28,6 @@ body {
   color: var(--color-text);
 }
 
-.prymary-header {
-  background: #222;
-  padding: 10px;
-  margin: 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #fff;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.back-btn, .cart-btn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-}
-
 main#content {
   max-width: 1200px;
   margin: 30px auto;
@@ -63,7 +37,7 @@ main#content {
   box-shadow: var(--shadow-sm);
 }
 
-.text, .product-name, .product-price, .add-cart-btn, .cart-btn, .back-btn {
+.text, .product-name, .product-price, .add-cart-btn {
   text-align: center;
 }
 
@@ -159,6 +133,7 @@ main#content {
   border-radius: 6px;
   padding: 10px 18px;
   font-size: 0.95em;
+  font-family: 'Montserrat', sans-serif;
   cursor: pointer;
   transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
   margin: 0 auto 10px auto;
@@ -169,7 +144,7 @@ main#content {
 }
 .btn:hover {
   background-color: var(--color-primary-hover);
-  box-shadow: 0 4px 14px rgba(37, 104, 227, 0.25);
+  box-shadow: 0 4px 14px rgba(90, 64, 50, 0.25);
   transform: translateY(-1px);
 }
 
@@ -440,7 +415,6 @@ main#content {
 @media (max-width: 768px) {
   .products-row { gap: 18px; }
   .product-card { width: 100%; max-width: 320px; }
-  .navbar { padding: 0 12px; }
   .checkout-features { grid-template-columns: repeat(2, 1fr); }
   .checkout-title { font-size: 28px; }
 }
