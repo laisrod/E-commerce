@@ -1,9 +1,23 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+puts "Seeding products..."
+
+products = [
+  { name: "Cooking Oil", price: 10.50, product_type: "grocery", image_url: "/img/product.svg" },
+  { name: "Pasta", price: 6.25, product_type: "grocery", image_url: "/img/product.svg" },
+  { name: "Cake", price: 5.00, product_type: "grocery", image_url: "/img/product.svg" },
+  { name: "Shampoo", price: 8.99, product_type: "beauty", image_url: "/img/product.svg" },
+  { name: "Face Cream", price: 12.50, product_type: "beauty", image_url: "/img/product.svg" },
+  { name: "Batom", price: 9.75, product_type: "beauty", image_url: "/img/product.svg" },
+  { name: "Headphones", price: 29.99, product_type: "electronics", image_url: "/img/product.svg" },
+  { name: "DVD", price: 99.99, product_type: "electronics", image_url: "/img/product.svg" },
+  { name: "TV", price: 49.99, product_type: "electronics", image_url: "/img/product.svg" },
+]
+
+products.each do |attrs|
+  Product.find_or_create_by!(name: attrs[:name]) do |p|
+    p.price = attrs[:price]
+    p.product_type = attrs[:product_type]
+    p.image_url = attrs[:image_url]
+  end
+end
+
+puts "✅ #{Product.count} products seeded!"
