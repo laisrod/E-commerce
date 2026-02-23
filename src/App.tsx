@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { products } from './data/products'
 import { useCart } from './hooks/useCart'
-import { Navbar } from './components/Navbar'
+import { Navbar, FilterType } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { ProductSection } from './components/ProductSection'
 import { CartModal } from './components/CartModal'
@@ -10,6 +10,7 @@ import { Product } from './types/Product'
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const [activeFilter, setActiveFilter] = useState<FilterType>('all')
   const { cart, totalItems, totalPrice, addToCart, removeFromCart, clearCart } =
     useCart()
 
@@ -21,45 +22,57 @@ function App() {
     addToCart(product)
   }
 
+  const showGrocery = activeFilter === 'all' || activeFilter === 'grocery'
+  const showBeauty = activeFilter === 'all' || activeFilter === 'beauty'
+  const showElectronics = activeFilter === 'all' || activeFilter === 'electronics'
+
   return (
     <>
       <Navbar
         cartCount={totalItems}
+        activeFilter={activeFilter}
         onCartClick={() => setIsCartOpen(true)}
+        onFilterChange={setActiveFilter}
       />
 
       <Hero />
 
       <main id="content">
-        <ProductSection
-          title="Grocery"
-          subtitle="selection"
-          icon="/img/grocery.png"
-          iconAlt="Grocery"
-          products={groceryProducts}
-          startIndex={1}
-          onAddToCart={handleAddToCart}
-        />
+        {showGrocery && (
+          <ProductSection
+            title="Grocery"
+            subtitle="selection"
+            icon="/img/grocery.png"
+            iconAlt="Grocery"
+            products={groceryProducts}
+            startIndex={1}
+            onAddToCart={handleAddToCart}
+          />
+        )}
 
-        <ProductSection
-          title="Beauty"
-          subtitle="selection"
-          icon="/img/silhueta-em-forma-de-coracao.png"
-          iconAlt="Beauty"
-          products={beautyProducts}
-          startIndex={4}
-          onAddToCart={handleAddToCart}
-        />
+        {showBeauty && (
+          <ProductSection
+            title="Beauty"
+            subtitle="selection"
+            icon="/img/silhueta-em-forma-de-coracao.png"
+            iconAlt="Beauty"
+            products={beautyProducts}
+            startIndex={4}
+            onAddToCart={handleAddToCart}
+          />
+        )}
 
-        <ProductSection
-          title="Electronics"
-          subtitle="selection"
-          icon="/img/herramientas-y-utensilios.png"
-          iconAlt="Electronics"
-          products={electronicsProducts}
-          startIndex={7}
-          onAddToCart={handleAddToCart}
-        />
+        {showElectronics && (
+          <ProductSection
+            title="Electronics"
+            subtitle="selection"
+            icon="/img/herramientas-y-utensilios.png"
+            iconAlt="Electronics"
+            products={electronicsProducts}
+            startIndex={7}
+            onAddToCart={handleAddToCart}
+          />
+        )}
       </main>
 
       <CartModal

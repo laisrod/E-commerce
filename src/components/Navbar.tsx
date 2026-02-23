@@ -1,12 +1,10 @@
-import { useState } from 'react'
+import { useNavbar, type NavbarProps, type FilterType } from '../hooks/useNavbar'
 
-interface NavbarProps {
-  cartCount: number
-  onCartClick: () => void
-}
+export type { FilterType }
 
-export function Navbar({ cartCount, onCartClick }: NavbarProps) {
-  const [menuOpen, setMenuOpen] = useState(false)
+export function Navbar(props: NavbarProps) {
+  const { toggleMenu, filters, cartCount, activeFilter, onCartClick, onFilterChange } =
+    useNavbar(props)
 
   return (
     <header className="site-header">
@@ -19,7 +17,7 @@ export function Navbar({ cartCount, onCartClick }: NavbarProps) {
       <div className="header-toolbar">
         <button
           className="toolbar-btn hamburger-btn"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={toggleMenu}
           aria-label="Menu"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -61,13 +59,19 @@ export function Navbar({ cartCount, onCartClick }: NavbarProps) {
         </div>
       </div>
 
-      {/* Navigation */}
+      {/* Navigation filters */}
       <nav className="header-nav">
         <ul className="header-nav-list">
-          <li><a href="/">VIEW ALL</a></li>
-          <li><a href="#grocery">BLACK</a></li>
-          <li><a href="#beauty">SUITS</a></li>
-          <li><a href="#electronics">SECOND HAND</a></li>
+          {filters.map((f) => (
+            <li key={f.value}>
+              <button
+                className={`nav-filter-btn${activeFilter === f.value ? ' active' : ''}`}
+                onClick={() => onFilterChange(f.value)}
+              >
+                {f.label}
+              </button>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>

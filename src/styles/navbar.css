@@ -92,19 +92,28 @@
   padding: 12px 24px;
 }
 
-.header-nav-list li a {
+.nav-filter-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
   text-decoration: none;
-  color: #222;
+  color: #888;
   font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 1.5px;
   padding: 2px 0;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
   white-space: nowrap;
+  border-bottom: 1.5px solid transparent;
 }
-.header-nav-list li a:hover {
-  opacity: 0.5;
+.nav-filter-btn:hover {
+  color: #222;
+}
+.nav-filter-btn.active {
+  color: #222;
+  font-weight: 600;
+  border-bottom: 1.5px solid #222;
 }
 
 /* ========== Responsivo Navbar ========== */
@@ -123,7 +132,7 @@
     padding: 10px 16px;
     overflow-x: auto;
   }
-  .header-nav-list li a {
+  .nav-filter-btn {
     font-size: 10px;
   }
 }
